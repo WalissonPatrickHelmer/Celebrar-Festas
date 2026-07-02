@@ -1,0 +1,722 @@
+/* =====================================================================
+   CELEBRAR — DECORAÇÃO COM BALÕES
+   Folha de estilos única. Organizada em:
+   1. Reset & variáveis (tokens de design)
+   2. Elementos base (tipografia, botões, container)
+   3. Cabeçalho / navegação
+   4. Hero + guirlanda de balões (elemento assinatura)
+   5. Divisores entre seções
+   6. Seção Sobre
+   7. Seção Serviços
+   8. Seção Portfólio (galeria)
+   9. Seção Depoimento
+   10. Seção Contato / formulário
+   11. Rodapé
+   12. Animações de entrada (scroll reveal)
+   13. Responsivo
+   ===================================================================== */
+
+/* ---------------------------------------------------------------------
+   1. RESET & TOKENS DE DESIGN
+   Alterar cores/fontes da marca aqui — todo o resto do arquivo usa
+   estas variáveis, então a manutenção fica centralizada.
+--------------------------------------------------------------------- */
+:root {
+  /* Paleta — inspirada nas cores reais dos balões dos eventos */
+  --color-cream: #FFF8EF;   /* fundo principal, quente e convidativo */
+  --color-white: #FFFFFF;   /* fundo alternado das seções */
+  --color-ink: #2E2438;     /* texto principal, roxo bem escuro */
+  --color-ink-soft: #6B627A;/* texto secundário */
+
+  --color-pink: #E85D75;    /* balão rosa / cor de destaque principal */
+  --color-teal: #3EC6C1;    /* balão azul-esverdeado */
+  --color-yellow: #FFC845;  /* balão amarelo */
+  --color-purple: #8B5FBF;  /* balão roxo */
+
+  --color-border: #EDE3D4;
+
+  /* Tipografia */
+  --font-display: "Baloo 2", system-ui, sans-serif;
+  --font-body: "Nunito Sans", system-ui, sans-serif;
+
+  /* Espaçamento e forma */
+  --radius-lg: 28px;
+  --radius-md: 18px;
+  --radius-sm: 10px;
+  --shadow-card: 0 18px 40px -20px rgba(46, 36, 56, 0.35);
+  --section-pad: clamp(64px, 9vw, 120px);
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* , *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * , *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--color-ink);
+  background: var(--color-cream);
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+
+a { color: inherit; text-decoration: none; }
+
+ul { list-style: none; margin: 0; padding: 0; }
+
+.container {
+  width: min(1140px, 100% - 48px);
+  margin-inline: auto;
+}
+
+/* ---------------------------------------------------------------------
+   2. ELEMENTOS BASE — tipografia, botões
+--------------------------------------------------------------------- */
+.eyebrow {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  color: var(--color-pink);
+  margin: 0 0 10px;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+  line-height: 1.15;
+  margin: 0 0 18px;
+}
+
+.section-lead {
+  color: var(--color-ink-soft);
+  font-size: 1.05rem;
+  max-width: 620px;
+}
+
+.center { text-align: center; margin-inline: auto; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 14px 28px;
+  border-radius: 999px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), background 0.25s var(--ease);
+}
+
+.btn--primary {
+  background: var(--color-pink);
+  color: var(--color-white);
+  box-shadow: 0 14px 28px -12px rgba(232, 93, 117, 0.65);
+}
+
+.btn--primary:hover,
+.btn--primary:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 32px -12px rgba(232, 93, 117, 0.75);
+}
+
+.btn--ghost {
+  background: transparent;
+  border-color: var(--color-ink);
+  color: var(--color-ink);
+}
+
+.btn--ghost:hover,
+.btn--ghost:focus-visible {
+  background: var(--color-ink);
+  color: var(--color-white);
+}
+
+.btn--block { width: 100%; }
+
+.btn:focus-visible,
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--color-purple);
+  outline-offset: 2px;
+}
+
+/* ---------------------------------------------------------------------
+   3. CABEÇALHO / NAVEGAÇÃO
+--------------------------------------------------------------------- */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 248, 239, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+
+.header.is-scrolled {
+  border-color: var(--color-border);
+  box-shadow: 0 10px 30px -22px rgba(46, 36, 56, 0.4);
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 14px;
+}
+
+.brand__logo { height: 42px; width: auto; }
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.nav__link {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--color-ink);
+  position: relative;
+  padding-block: 4px;
+}
+
+.nav__link:not(.nav__link--cta)::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -2px;
+  width: 0%;
+  height: 2px;
+  background: var(--color-pink);
+  transition: width 0.25s var(--ease);
+}
+
+.nav__link:not(.nav__link--cta):hover::after { width: 100%; }
+
+.nav__link--cta {
+  background: var(--color-ink);
+  color: var(--color-white);
+  padding: 10px 20px;
+  border-radius: 999px;
+}
+
+.nav__link--cta:hover { background: var(--color-pink); }
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.nav-toggle span {
+  width: 24px;
+  height: 2px;
+  background: var(--color-ink);
+  transition: transform 0.25s var(--ease), opacity 0.25s var(--ease);
+}
+
+/* ---------------------------------------------------------------------
+   4. HERO + GUIRLANDA DE BALÕES (elemento assinatura da marca)
+   Os balões são desenhados só com CSS: um círculo + um "nó" triangular.
+--------------------------------------------------------------------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding-block: calc(var(--section-pad) + 40px) var(--section-pad);
+}
+
+.hero__inner {
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  line-height: 1.08;
+  margin: 0 0 20px;
+}
+
+.hero__lead {
+  font-size: 1.15rem;
+  color: var(--color-ink-soft);
+  max-width: 540px;
+  margin-bottom: 32px;
+}
+
+.hero__actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* Guirlanda: fileira de balões flutuando no topo do hero */
+.balloon-garland {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.balloon {
+  position: absolute;
+  width: 90px;
+  height: 108px;
+  border-radius: 50% 50% 48% 48%;
+  filter: drop-shadow(0 12px 18px rgba(46, 36, 56, 0.18));
+  animation: float 6s ease-in-out infinite;
+}
+
+/* "nó" do balão, feito com um triângulo pequeno na base */
+.balloon::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -8px;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 10px solid currentColor;
+  transform: translateX(-50%);
+}
+
+.balloon--pink   { background: var(--color-pink);   color: var(--color-pink); }
+.balloon--yellow { background: var(--color-yellow); color: var(--color-yellow); }
+.balloon--teal   { background: var(--color-teal);   color: var(--color-teal); }
+.balloon--purple { background: var(--color-purple); color: var(--color-purple); }
+
+.balloon--sm { width: 56px; height: 68px; }
+
+/* Posicionamento individual de cada balão da guirlanda do hero */
+.balloon-garland--hero .balloon:nth-child(1) { top: -30px;  left: 4%;   animation-delay: 0s; }
+.balloon-garland--hero .balloon:nth-child(2) { top: -10px;  left: 14%;  animation-delay: 0.6s; }
+.balloon-garland--hero .balloon:nth-child(3) { top: -40px;  right: 18%; animation-delay: 1.2s; }
+.balloon-garland--hero .balloon:nth-child(4) { top: -5px;   right: 6%;  animation-delay: 0.3s; }
+.balloon-garland--hero .balloon:nth-child(5) { top: 60px;   left: 22%;  animation-delay: 1.6s; }
+.balloon-garland--hero .balloon:nth-child(6) { top: 70px;   right: 30%; animation-delay: 0.9s; }
+.balloon-garland--hero .balloon:nth-child(7) { top: 20px;   left: 45%;  animation-delay: 2s; }
+.balloon-garland--hero .balloon:nth-child(8) { top: 90px;   right: 45%; animation-delay: 1.4s; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50%      { transform: translateY(16px) rotate(2deg); }
+}
+
+/* ---------------------------------------------------------------------
+   5. DIVISORES ENTRE SEÇÕES
+   Fileira de "bolhas" (balões vistos de cima) que separa os blocos
+   de fundo creme/branco, reforçando o motivo visual da marca.
+--------------------------------------------------------------------- */
+.divider {
+  height: 34px;
+  width: 100%;
+  background-repeat: repeat-x;
+  background-size: 56px 56px;
+  background-position: center;
+}
+
+.divider--cream-to-white {
+  background-color: var(--color-white);
+  background-image: radial-gradient(circle at 50% 0%, var(--color-cream) 60%, transparent 61%);
+}
+
+.divider--white-to-cream {
+  background-color: var(--color-cream);
+  background-image: radial-gradient(circle at 50% 0%, var(--color-white) 60%, transparent 61%);
+}
+
+/* ---------------------------------------------------------------------
+   6. SOBRE
+--------------------------------------------------------------------- */
+.about { background: var(--color-white); padding-block: var(--section-pad); }
+
+.about__inner {
+  display: grid;
+  grid-template-columns: 0.85fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.about__photo {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+.about__photo img { width: 100%; height: 100%; object-fit: cover; }
+
+.about__tag {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  background: var(--color-white);
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.8rem;
+  padding: 8px 16px;
+  border-radius: 999px;
+  box-shadow: var(--shadow-card);
+}
+
+.about__text p { line-height: 1.7; color: var(--color-ink-soft); }
+
+.about__list { margin-top: 20px; display: grid; gap: 12px; }
+
+.about__list li {
+  position: relative;
+  padding-left: 28px;
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+.about__list li::before {
+  content: "🎈";
+  position: absolute;
+  left: 0;
+  top: -1px;
+  font-size: 0.9rem;
+}
+
+/* ---------------------------------------------------------------------
+   7. SERVIÇOS
+--------------------------------------------------------------------- */
+.services { padding-block: var(--section-pad); }
+
+.services__grid {
+  margin-top: 48px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.service-card {
+  background: var(--color-white);
+  border-radius: var(--radius-md);
+  padding: 32px 24px;
+  text-align: left;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.3s var(--ease);
+}
+
+.service-card:hover { transform: translateY(-8px); }
+
+.service-card__icon {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--icon-color) 16%, white);
+  font-size: 1.5rem;
+  margin-bottom: 18px;
+}
+
+.service-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  margin: 0 0 10px;
+}
+
+.service-card p {
+  color: var(--color-ink-soft);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ---------------------------------------------------------------------
+   8. PORTFÓLIO / GALERIA
+--------------------------------------------------------------------- */
+.portfolio { background: var(--color-white); padding-block: var(--section-pad); }
+
+.gallery {
+  margin-top: 48px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.gallery__item {
+  position: relative;
+  margin: 0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  box-shadow: var(--shadow-card);
+}
+
+.gallery__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s var(--ease);
+}
+
+.gallery__item:hover img { transform: scale(1.08); }
+
+.gallery__item figcaption {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  padding: 18px;
+  background: linear-gradient(0deg, rgba(46,36,56,0.85) 0%, rgba(46,36,56,0) 100%);
+  color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  transform: translateY(6px);
+  opacity: 0.95;
+}
+
+.gallery__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.gallery__desc { font-size: 0.82rem; opacity: 0.85; }
+
+/* ---------------------------------------------------------------------
+   9. DEPOIMENTO / DESTAQUE
+--------------------------------------------------------------------- */
+.highlight {
+  position: relative;
+  padding-block: calc(var(--section-pad) * 0.7);
+  background: var(--color-ink);
+  color: var(--color-white);
+  overflow: hidden;
+}
+
+.highlight__inner {
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
+  text-align: center;
+  margin-inline: auto;
+}
+
+.balloon-garland--small {
+  position: relative;
+  height: 90px;
+  margin-bottom: -10px;
+}
+
+.balloon-garland--small .balloon:nth-child(1) { left: calc(50% - 90px); top: 10px; animation-delay: 0.2s; }
+.balloon-garland--small .balloon:nth-child(2) { left: calc(50% - 28px); top: -10px; animation-delay: 0.9s; }
+.balloon-garland--small .balloon:nth-child(3) { left: calc(50% + 34px); top: 10px; animation-delay: 0.5s; }
+
+.highlight__quote {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  line-height: 1.4;
+  margin: 0 0 16px;
+}
+
+.highlight__author {
+  color: var(--color-yellow);
+  font-weight: 700;
+  font-family: var(--font-display);
+}
+
+/* ---------------------------------------------------------------------
+   10. CONTATO / FORMULÁRIO
+--------------------------------------------------------------------- */
+.contact { padding-block: var(--section-pad); }
+
+.contact__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+.contact__info p { color: var(--color-ink-soft); line-height: 1.7; }
+
+.contact__details {
+  margin-top: 28px;
+  display: grid;
+  gap: 18px;
+}
+
+.contact__details li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 14px;
+}
+
+.contact__details strong {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  color: var(--color-pink);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.contact__details a { font-weight: 600; }
+.contact__details a:hover { color: var(--color-pink); }
+
+.contact__form {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  padding: 36px;
+  box-shadow: var(--shadow-card);
+  display: grid;
+  gap: 18px;
+}
+
+.field { display: grid; gap: 6px; font-size: 0.9rem; font-weight: 600; }
+
+.field input,
+.field textarea {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--color-border);
+  background: var(--color-cream);
+  color: var(--color-ink);
+  resize: vertical;
+  transition: border-color 0.2s var(--ease);
+}
+
+.field input:focus,
+.field textarea:focus {
+  border-color: var(--color-pink);
+  outline: none;
+}
+
+.field__feedback {
+  margin: 0;
+  min-height: 1.2em;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-teal);
+}
+
+/* ---------------------------------------------------------------------
+   11. RODAPÉ
+--------------------------------------------------------------------- */
+.footer { background: var(--color-ink); color: rgba(255,255,255,0.7); padding-block: 32px; }
+
+.footer__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.footer__logo { height: 30px; filter: brightness(0) invert(1); opacity: 0.85; }
+
+.footer p { margin: 0; font-size: 0.85rem; }
+
+.back-to-top {
+  background: rgba(255,255,255,0.1);
+  color: var(--color-white);
+  border: none;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.25s var(--ease), transform 0.25s var(--ease);
+}
+
+.back-to-top:hover { background: var(--color-pink); transform: translateY(-3px); }
+
+/* ---------------------------------------------------------------------
+   12. ANIMAÇÕES DE ENTRADA (scroll reveal)
+   A classe .reveal começa invisível/deslocada; o JS adiciona
+   .reveal--visible via IntersectionObserver quando o elemento entra
+   na tela.
+--------------------------------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+
+.reveal--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------------------------------------------------------------------
+   13. RESPONSIVO
+--------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .about__inner,
+  .contact__inner { grid-template-columns: 1fr; }
+  .services__grid { grid-template-columns: repeat(2, 1fr); }
+  .gallery { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 720px) {
+  .nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--color-cream);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    padding: 16px 24px 24px;
+    border-bottom: 1px solid var(--color-border);
+    transform-origin: top;
+    transform: scaleY(0);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.25s var(--ease), opacity 0.25s var(--ease);
+  }
+
+  .nav.is-open {
+    transform: scaleY(1);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .nav__link { width: 100%; padding-block: 10px; }
+  .nav__link--cta { margin-top: 8px; text-align: center; }
+
+  .nav-toggle { display: flex; }
+
+  .services__grid,
+  .gallery { grid-template-columns: 1fr; }
+}

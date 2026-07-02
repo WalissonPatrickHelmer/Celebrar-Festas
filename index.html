@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Celebrar | Decoração com Balões</title>
+  <meta name="description" content="Celebrar transforma qualquer data em festa: decoração com balões personalizada para aniversários, chás de bebê e eventos temáticos." />
+
+  <!-- Fontes: Baloo 2 para títulos (redonda e festiva) + Nunito Sans para textos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Folha de estilos própria -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Favicon usando a logo da marca -->
+  <link rel="icon" type="image/png" href="images/logo.png">
+</head>
+<body>
+
+  <!-- ============================================= -->
+  <!-- CABEÇALHO / NAVEGAÇÃO                          -->
+  <!-- ============================================= -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="#topo" class="brand">
+        <img src="images/logo.png" alt="Celebrar" class="brand__logo">
+      </a>
+
+      <!-- Botão hamburguer (mobile) -->
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="nav" id="nav">
+        <a href="#sobre" class="nav__link">Sobre</a>
+        <a href="#servicos" class="nav__link">Serviços</a>
+        <a href="#portfolio" class="nav__link">Portfólio</a>
+        <a href="#depoimento" class="nav__link">Depoimento</a>
+        <a href="#contato" class="nav__link nav__link--cta">Fazer orçamento</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ============================================= -->
+  <!-- HERO                                           -->
+  <!-- ============================================= -->
+  <section class="hero" id="topo">
+    <!-- Guirlanda de balões animada, feita 100% em CSS -->
+    <div class="balloon-garland balloon-garland--hero" aria-hidden="true">
+      <span class="balloon balloon--pink"></span>
+      <span class="balloon balloon--yellow"></span>
+      <span class="balloon balloon--teal"></span>
+      <span class="balloon balloon--purple"></span>
+      <span class="balloon balloon--pink balloon--sm"></span>
+      <span class="balloon balloon--yellow balloon--sm"></span>
+      <span class="balloon balloon--teal balloon--sm"></span>
+      <span class="balloon balloon--purple balloon--sm"></span>
+    </div>
+
+    <div class="container hero__inner">
+      <p class="eyebrow reveal">decoração com balões · Belo Horizonte e região</p>
+      <h1 class="hero__title reveal">
+        Cada festa tem uma cor.<br>
+        A gente encontra a sua.
+      </h1>
+      <p class="hero__lead reveal">
+        A Celebrar cria cenários de balões sob medida para aniversários, chás de bebê,
+        formaturas e eventos temáticos — do rascunho da ideia ao último balão inflado.
+      </p>
+      <div class="hero__actions reveal">
+        <a href="#contato" class="btn btn--primary">Solicitar orçamento</a>
+        <a href="#portfolio" class="btn btn--ghost">Ver portfólio</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Divisor em formato de guirlanda entre as seções -->
+  <div class="divider divider--cream-to-white" aria-hidden="true"></div>
+
+  <!-- ============================================= -->
+  <!-- SOBRE                                          -->
+  <!-- ============================================= -->
+  <section class="about" id="sobre">
+    <div class="container about__inner">
+      <div class="about__photo reveal">
+        <img src="images/lorena-doces.png" alt="Idealizadora da Celebrar ao lado de um painel de balões temático de doces">
+        <span class="about__tag">quem faz acontecer</span>
+      </div>
+      <div class="about__text">
+        <p class="eyebrow reveal">sobre a celebrar</p>
+        <h2 class="section-title reveal">Festa boa é a que conta uma história</h2>
+        <p class="reveal">
+          Cada projeto começa com uma pergunta simples: qual é o tema que essa pessoa
+          está celebrando? A partir daí, escolhemos paleta, formatos e texturas de balão
+          para montar um cenário que combina com a data — seja uma Festa Junina cheia de
+          cor, um quarto de bebê em tons pastel ou uma comemoração da seleção brasileira.
+        </p>
+        <p class="reveal">
+          Trabalhamos com balões biodegradáveis, arcos orgânicos, painéis personalizados
+          e móveis de apoio (cilindros e mesas), sempre montados no local no dia do evento.
+        </p>
+        <ul class="about__list reveal">
+          <li>Atendimento personalizado, do primeiro contato à montagem</li>
+          <li>Paleta e tema pensados para cada celebração</li>
+          <li>Montagem e desmontagem incluídas no orçamento</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider divider--white-to-cream" aria-hidden="true"></div>
+
+  <!-- ============================================= -->
+  <!-- SERVIÇOS                                       -->
+  <!-- ============================================= -->
+  <section class="services" id="servicos">
+    <div class="container">
+      <p class="eyebrow reveal center">o que fazemos</p>
+      <h2 class="section-title reveal center">Um cenário para cada tipo de festa</h2>
+
+      <div class="services__grid">
+        <article class="service-card reveal">
+          <div class="service-card__icon" style="--icon-color:#E85D75;">🎈</div>
+          <h3>Arcos e painéis</h3>
+          <p>Arcos orgânicos, painéis temáticos e backdrops personalizados para o ponto principal da festa.</p>
+        </article>
+
+        <article class="service-card reveal">
+          <div class="service-card__icon" style="--icon-color:#3EC6C1;">🎂</div>
+          <h3>Aniversários temáticos</h3>
+          <p>Do Hot Wheels à Festa Junina: decoração completa alinhada ao tema escolhido pela família.</p>
+        </article>
+
+        <article class="service-card reveal">
+          <div class="service-card__icon" style="--icon-color:#FFC845;">🍼</div>
+          <h3>Chá de bebê e revelação</h3>
+          <p>Paletas suaves, móbiles e composições delicadas para celebrar a chegada de quem vem por aí.</p>
+        </article>
+
+        <article class="service-card reveal">
+          <div class="service-card__icon" style="--icon-color:#8B5FBF;">🏆</div>
+          <h3>Datas comemorativas</h3>
+          <p>Copa do Mundo, formaturas e eventos corporativos com identidade visual sob medida.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider divider--cream-to-white" aria-hidden="true"></div>
+
+  <!-- ============================================= -->
+  <!-- PORTFÓLIO                                      -->
+  <!-- ============================================= -->
+  <section class="portfolio" id="portfolio">
+    <div class="container">
+      <p class="eyebrow reveal center">trabalhos recentes</p>
+      <h2 class="section-title reveal center">Alguns cenários que já criamos</h2>
+      <p class="section-lead reveal center">
+        Cada imagem é uma festa real, montada do zero — clique para ver o tema de cada uma.
+      </p>
+
+      <div class="gallery">
+        <figure class="gallery__item reveal" data-theme="Festa Junina">
+          <img src="images/festa-junina.png" alt="Decoração de Festa Junina com painel colorido, balões amarelos e mesa de doces">
+          <figcaption>
+            <span class="gallery__title">Festa Junina</span>
+            <span class="gallery__desc">Painel arraiá, cilindros azuis e balões em torção</span>
+          </figcaption>
+        </figure>
+
+        <figure class="gallery__item reveal" data-theme="Hot Wheels">
+          <img src="images/hot-wheels.png" alt="Decoração de aniversário Hot Wheels com balões azuis, vermelhos e laranja">
+          <figcaption>
+            <span class="gallery__title">Hot Wheels</span>
+            <span class="gallery__desc">Mesa de doces, caixinhas personalizadas e arco de balões</span>
+          </figcaption>
+        </figure>
+
+        <figure class="gallery__item reveal" data-theme="Copa do Mundo">
+          <img src="images/brasil.png" alt="Painel de balões verde, amarelo, azul e branco formando a bandeira do Brasil">
+          <figcaption>
+            <span class="gallery__title">Verde e Amarelo</span>
+            <span class="gallery__desc">Painel de balões inspirado nas cores do Brasil</span>
+          </figcaption>
+        </figure>
+
+        <figure class="gallery__item reveal" data-theme="Chá de Bebê">
+          <img src="images/baby-giraffe.png" alt="Decoração pastel de chá de bebê com arco de balões em tons de lilás, verde e amarelo">
+          <figcaption>
+            <span class="gallery__title">Chá de Bebê Pastel</span>
+            <span class="gallery__desc">Arco orgânico em tons candy e mesa de doces</span>
+          </figcaption>
+        </figure>
+
+        <figure class="gallery__item reveal" data-theme="Baby Looney Tunes">
+          <img src="images/baby-looney-tunes.png" alt="Decoração de chá de bebê com tema Baby Looney Tunes em tons pastel">
+          <figcaption>
+            <span class="gallery__title">Baby Looney Tunes</span>
+            <span class="gallery__desc">Composição em azul e verde-água com balões bubble</span>
+          </figcaption>
+        </figure>
+
+        <figure class="gallery__item reveal" data-theme="Festa de Doces">
+          <img src="images/lorena-doces.png" alt="Painel de balões temático de doces e sorvetes em tons pastel">
+          <figcaption>
+            <span class="gallery__title">Mundo de Doces</span>
+            <span class="gallery__desc">Painel imersivo com esculturas de balão em formato de doces</span>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider divider--white-to-cream" aria-hidden="true"></div>
+
+  <!-- ============================================= -->
+  <!-- DEPOIMENTO / DESTAQUE                          -->
+  <!-- ============================================= -->
+  <section class="highlight" id="depoimento">
+    <div class="container highlight__inner">
+      <div class="balloon-garland balloon-garland--small" aria-hidden="true">
+        <span class="balloon balloon--pink balloon--sm"></span>
+        <span class="balloon balloon--teal balloon--sm"></span>
+        <span class="balloon balloon--yellow balloon--sm"></span>
+      </div>
+      <blockquote class="highlight__quote reveal">
+        “Cada balão tem um papel na composição — a gente pensa na paleta antes de pensar
+        na quantidade.”
+      </blockquote>
+      <p class="highlight__author reveal">— Equipe Celebrar</p>
+    </div>
+  </section>
+
+  <div class="divider divider--cream-to-white" aria-hidden="true"></div>
+
+  <!-- ============================================= -->
+  <!-- CONTATO                                        -->
+  <!-- ============================================= -->
+  <section class="contact" id="contato">
+    <div class="container contact__inner">
+      <div class="contact__info">
+        <p class="eyebrow reveal">vamos combinar sua festa?</p>
+        <h2 class="section-title reveal">Conta pra gente qual é a data</h2>
+        <p class="reveal">
+          Preencha o formulário com o tema e a data do seu evento, ou fale direto pelo
+          WhatsApp — respondemos rapidinho.
+        </p>
+
+        <ul class="contact__details reveal">
+          <li>
+            <strong>WhatsApp</strong>
+            <a href="https://wa.me/5531985074372" target="_blank" rel="noopener">(31) 98507-4372</a>
+          </li>
+          <li>
+            <strong>Instagram</strong>
+            <a href="https://www.instagram.com/celebrar.festaas" target="_blank" rel="noopener">@celebrar.decor</a>
+          </li>
+          <li>
+            <strong>Atendimento</strong>
+            <span>Belo Horizonte e região metropolitana</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Formulário simples de orçamento (envio tratado em js/script.js) -->
+      <form class="contact__form reveal" id="contactForm" novalidate>
+        <label class="field">
+          <span>Nome</span>
+          <input type="text" name="nome" placeholder="Seu nome" required>
+        </label>
+
+        <label class="field">
+          <span>WhatsApp</span>
+          <input type="tel" name="telefone" placeholder="(31) 98507-4372" required>
+        </label>
+
+        <label class="field">
+          <span>Tema da festa</span>
+          <input type="text" name="tema" placeholder="Ex: chá de bebê, Festa Junina...">
+        </label>
+
+        <label class="field">
+          <span>Data do evento</span>
+          <input type="date" name="data">
+        </label>
+
+        <label class="field">
+          <span>Mensagem</span>
+          <textarea name="mensagem" rows="3" placeholder="Conte um pouco sobre a ideia da festa"></textarea>
+        </label>
+
+        <button type="submit" class="btn btn--primary btn--block">Enviar pedido</button>
+        <p class="field__feedback" id="formFeedback" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ============================================= -->
+  <!-- RODAPÉ                                         -->
+  <!-- ============================================= -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <img src="images/logo.png" alt="Celebrar" class="footer__logo">
+      <p>&copy; <span id="year"></span> Celebrar — Decoração com Balões. Todos os direitos reservados.</p>
+      <button class="back-to-top" id="backToTop" aria-label="Voltar ao topo">↑</button>
+    </div>
+  </footer>
+
+  <!-- Script próprio -->
+  <script src="js/script.js"></script>
+</body>
+</html>
