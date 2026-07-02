@@ -1,0 +1,2 @@
+# Celebrar Festas
+### Descrição para o GitHub  > Landing Page moderna e responsiva desenvolvida para a **Celebrar Festas**, empresa especializada em decoração de festas infantis em Ibirité - MG. O projeto destaca os serviços, apresenta uma galeria de decorações, informações sobre locação e reservas, além de facilitar o contato por meio do WhatsApp. Construído com HTML5, CSS3 e JavaScript, priorizando design elegante, animações suaves, ótima experiência do usuário e alto potencial de conversão. 🎈✨
