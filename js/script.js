@@ -75,11 +75,17 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* -------------------------------------------------------------
-     6. FORMULÁRIO DE CONTATO
-     Aqui não há backend conectado — apenas validação simples e
-     feedback visual. Para ligar a um serviço real (ex: e-mail,
-     planilha, WhatsApp API), troque o bloco marcado abaixo.
+     6. FORMULÁRIO DE CONTATO → ENVIA DIRETO PARA O WHATSAPP
+     Não temos backend próprio (e-mail, planilha, etc.), então o
+     formulário não "guarda" o pedido em lugar nenhum — ele só monta
+     uma mensagem com os dados preenchidos e abre o WhatsApp da
+     Celebrar já com tudo escrito, faltando só a pessoa apertar
+     "enviar" por lá. É o WhatsApp que efetivamente recebe o pedido.
+
+     Para trocar o número de destino, edite a constante abaixo.
   ------------------------------------------------------------- */
+  const WHATSAPP_NUMBER = "5531985074372"; // DDI 55 + DDD 31 + número, só dígitos
+
   const form = document.getElementById("contactForm");
   const feedback = document.getElementById("formFeedback");
 
@@ -87,27 +93,39 @@ document.addEventListener("DOMContentLoaded", () => {
     event.preventDefault();
 
     const nome = form.nome.value.trim();
-    const telefone = form.telefone.value.trim();
 
-    if (!nome || !telefone) {
-      feedback.textContent = "Preencha nome e WhatsApp para enviar.";
+    if (!nome) {
+      feedback.textContent = "Preencha seu nome para enviar.";
       feedback.style.color = "#E85D75";
       return;
     }
 
-    // ---- PONTO DE INTEGRAÇÃO ----
-    // Troque este trecho por uma chamada real (fetch para um backend,
-    // serviço de formulário, ou link direto para o WhatsApp com os dados).
-    console.log("Pedido de orçamento:", {
-      nome,
-      telefone,
-      tema: form.tema.value.trim(),
-      data: form.data.value,
-      mensagem: form.mensagem.value.trim(),
-    });
-    // -------------------------------
+    const tema = form.tema.value.trim();
+    const data = form.data.value; // formato aaaa-mm-dd
+    const mensagem = form.mensagem.value.trim();
 
-    feedback.textContent = `Recebido, ${nome}! Vamos te chamar no WhatsApp em breve. 🎈`;
+    // Deixa a data no formato dd/mm/aaaa para ficar legível na mensagem
+    let dataFormatada = "";
+    if (data) {
+      const [ano, mes, dia] = data.split("-");
+      dataFormatada = `${dia}/${mes}/${ano}`;
+    }
+
+    // Monta o texto que vai abrir pronto na conversa do WhatsApp
+    const linhas = [
+      `Olá! Meu nome é ${nome} e vim pelo site da Celebrar 🎈`,
+      tema ? `Tema da festa: ${tema}` : null,
+      dataFormatada ? `Data do evento: ${dataFormatada}` : null,
+      mensagem ? `Mensagem: ${mensagem}` : null,
+    ].filter(Boolean); // remove linhas vazias (campos não preenchidos)
+
+    const textoWhatsApp = encodeURIComponent(linhas.join("\n"));
+    const linkWhatsApp = `https://wa.me/${WHATSAPP_NUMBER}?text=${textoWhatsApp}`;
+
+    // Abre o WhatsApp (app no celular, ou WhatsApp Web no computador)
+    window.open(linkWhatsApp, "_blank", "noopener");
+
+    feedback.textContent = `Show, ${nome}! Abrimos o WhatsApp com sua mensagem — é só enviar por lá. 🎈`;
     feedback.style.color = "#3EC6C1";
     form.reset();
   });

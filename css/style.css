@@ -418,14 +418,14 @@ textarea:focus-visible {
 .services__grid {
   margin-top: 48px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
   gap: 24px;
 }
 
 .service-card {
   background: var(--color-white);
   border-radius: var(--radius-md);
-  padding: 32px 24px;
+  padding: 28px 22px;
   text-align: left;
   box-shadow: var(--shadow-card);
   transition: transform 0.3s var(--ease);
@@ -446,15 +446,39 @@ textarea:focus-visible {
 
 .service-card h3 {
   font-family: var(--font-display);
-  font-size: 1.15rem;
-  margin: 0 0 10px;
+  font-size: 1.1rem;
+  margin: 0;
+  line-height: 1.3;
 }
 
-.service-card p {
-  color: var(--color-ink-soft);
-  font-size: 0.95rem;
-  line-height: 1.6;
+/* Bloco de destaque explicando o processo (projeto antes da montagem) */
+.process-note {
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: var(--color-white);
+  border: 1.5px dashed var(--color-pink);
+  border-radius: var(--radius-md);
+  padding: 28px 32px;
+}
+
+.process-note__icon {
+  flex-shrink: 0;
+  font-size: 1.8rem;
+}
+
+.process-note p {
   margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: var(--color-ink);
+}
+
+@media (max-width: 560px) {
+  .process-note { flex-direction: column; text-align: center; }
 }
 
 /* ---------------------------------------------------------------------
